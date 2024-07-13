@@ -40,8 +40,8 @@ O chargeback é um mecanismo para reversão de transações que já foram liquid
  - reenbolso do pagamento por algum motivo entre o comprador e o comerciante
 
 Normalmente este processo começa com a requisição do comprado no banco emissor do cartão. Com isso, o banco vai 
-investigar junto a bandeirae o comerciante. No final, se for justo, a transação é revertida, e a transferência
-feita para a origem.
+investigar junto a bandeira, a adquirente e o comerciante. No final, se for constatado erro, a transação é revertida, e a transferência
+feita para a origem do pedido.
 
 O chargeback também pode acarretar em taxas maiores para o comerciante, revisão de contrado com a adquirente, e 
 reputação manchada.
@@ -59,5 +59,16 @@ antes da transação ser de fato liquidada.
 
 ## what is their connection with fraud in the acquiring world
 
-Fraude é um dos principais motivo para começo deste processo de `chargeback`, e é por ele também que o contrato entre
-adquirente e comerciante pode ser revisto, pode ser também acrescentado taxas extras.
+The `chargeback` and `anti-fraud` are executed in steps difer. The first is a reactive operation, when is identified the second.  
+
+A `anti-fraud` process can be automated, verify the logs transactions, dimiss the `chargeback` number executions
+
+# Análise
+## Analyze the data provided and present your conclusions (consider that all transactions are made using a mobile device).
+
+looking quickly to file, generaly de users don't buy in more one merchant by day. They use the same card to merchant differ.
+
+
+## In addition to the spreadsheet data, what other data would you look at to try to find patterns of possible frauds?
+Olharia para a coluna de comerciante, usuário e número de cartão. Tentaria ver o seguinte:
+ - tentaria ver também se o mesmo cartão está sendo usado em vários comerciantes em um espaço de tempo curto.
