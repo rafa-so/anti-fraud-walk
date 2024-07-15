@@ -1,7 +1,8 @@
 class CreateUsers < ActiveRecord::Migration[7.1]
   def up
     create_table :users do |t|
-      t.boolean :fraudster, default: false
+      t.integer :identity
+      t.boolean :deny, default: false
       t.timestamps
     end
   end
