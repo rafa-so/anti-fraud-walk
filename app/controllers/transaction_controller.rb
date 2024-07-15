@@ -5,27 +5,17 @@ class TransactionController < ApplicationController
         recommendation = 'approve'
 
         user_id = transaction_params[:user_id]
-        merchant_id = transaction_params[:user_id]
+        merchant_id = transaction_params[:merchant_id]
 
         # Recupera usuário já existente ou cria novo
-        user = User.found(user_id).first
-        merchant = Merchant.found(merchant_id).first
+        user = User.find_or_create_by(id: user_id)
+        merchant = Merchant.find_or_create_by(id: merchant_id)
 
-        if !user.present?
-            user = User.new
-            user.create_not_deny(identity: user_id)
-        end
-
-        if !merchant.present?
-            merchant = Merchant.new
-            merchant.create_not_deny(identity: merchant_id)
-        end
-
-        # Verifica se o usuário está com flag denied
+        # # Verifica se o usuário está com flag denied
         recommendation = 'deny' if user.is_denied? || merchant.is_denied?
 
         @response = {
-            transaction_id: 123,
+            transaction_id: transaction_params[:transaction_id],
             recommendation: recommendation
         }
 

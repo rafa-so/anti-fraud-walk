@@ -72,3 +72,13 @@ looking quickly to file, generaly de users don't buy in more one merchant by day
 ## In addition to the spreadsheet data, what other data would you look at to try to find patterns of possible frauds?
 Olharia para a coluna de comerciante, usuário e número de cartão. Tentaria ver o seguinte:
  - tentaria ver também se o mesmo cartão está sendo usado em vários comerciantes em um espaço de tempo curto.
+
+
+# Run project
+to run the project in development environment, just type within project directory:
+
+```bash
+$ docker-compose up -d && docker attach $(docker-compose ps -q web)
+```
+
+This statement permite that interaction with binding.pry gem debug
