@@ -20,11 +20,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_212308) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transactions", primary_key: "transaction_id", id: :string, force: :cascade do |t|
+  create_table "transactions", id: :string, force: :cascade do |t|
     t.datetime "transaction_date", null: false
     t.integer "transaction_amount", null: false
+    t.string "card_number", null: false
     t.string "device_id"
-    t.boolean "chargebacked", null: false
+    t.boolean "chargebacked"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
