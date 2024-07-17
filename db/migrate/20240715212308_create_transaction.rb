@@ -1,7 +1,7 @@
 class CreateTransaction < ActiveRecord::Migration[7.1]
   def change
     create_table :transactions, id: false do |t|
-      t.string :id, primary_key: true
+      t.string :id
       t.datetime :transaction_date, null: false
       t.integer :transaction_amount, null: false
       t.string :card_number, null: false
