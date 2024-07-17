@@ -1,1 +1,0 @@
-class BiggestAmount; end

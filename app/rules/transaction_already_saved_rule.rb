@@ -1,4 +1,4 @@
-class UserTooManyRule
+class TransactionAlreadySavedRule
   def initialize(transaction)
     @transaction = transaction
   end

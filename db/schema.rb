@@ -10,37 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_16_205808) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_17_153426) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "merchants", id: :string, force: :cascade do |t|
-    t.boolean "deny", default: false, null: false
+  create_table "transaction_histories", force: :cascade do |t|
+    t.bigint "transaction_id"
+    t.string "external_transaction_id"
+    t.integer "amount", null: false
+    t.string "card_number", null: false
+    t.datetime "external_date", null: false
+    t.integer "user_id"
+    t.integer "merchant_id"
+    t.integer "device_id"
+    t.boolean "chargebacked"
+    t.boolean "approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["transaction_id"], name: "index_transaction_histories_on_transaction_id"
   end
 
-  create_table "transactions", id: false, force: :cascade do |t|
-    t.string "transaction_id"
-    t.datetime "transaction_date", null: false
-    t.integer "transaction_amount", null: false
+  create_table "transactions", force: :cascade do |t|
+    t.string "external_id"
+    t.datetime "external_date", null: false
+    t.integer "amount", null: false
     t.string "card_number", null: false
     t.string "device_id"
-    t.boolean "chargebacked"
+    t.bigint "user_id"
+    t.bigint "merchant_id"
+    t.boolean "chargebacked", default: false
+    t.boolean "approved", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "processed", default: false
-    t.string "user_id"
-    t.string "merchant_id"
-    t.boolean "approved", default: false
     t.index ["merchant_id"], name: "index_transactions_on_merchant_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
-  create_table "users", id: :string, force: :cascade do |t|
-    t.boolean "deny", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+  add_foreign_key "transaction_histories", "transactions"
 end

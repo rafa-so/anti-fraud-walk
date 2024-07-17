@@ -1,12 +1,16 @@
 class CreateTransaction < ActiveRecord::Migration[7.1]
   def change
-    create_table :transactions, id: false do |t|
-      t.string :id
-      t.datetime :transaction_date, null: false
-      t.integer :transaction_amount, null: false
+    create_table :transactions do |t|
+      t.string :external_id
+      t.datetime :external_date, null: false
+      t.integer :amount, null: false
       t.string :card_number, null: false
       t.string :device_id
-      t.boolean :chargebacked
+      t.references :user
+      t.references :merchant
+      t.boolean :chargebacked, default: false
+      t.boolean :approved, default: false
+
       t.timestamps
     end
   end

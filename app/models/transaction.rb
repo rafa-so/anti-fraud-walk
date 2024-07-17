@@ -1,11 +1,8 @@
 class Transaction < ApplicationRecord
-  scope :from_user, -> (user_id) { where(user_id: user_id) }
-  scope :chargebacked, -> { where(chargebacked: true) }
+  class RuleError < StandardError; end
 
-  def process_date param
-    date = Time.parse(param)
-    this.transaction_date = date
-  end
+  scope :chargebacked, -> { where(chargebacked: true) }
+  validates :external_id, uniqueness: true
 
   def approval_label
     approved ? 'approved' : 'deny'

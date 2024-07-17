@@ -6,7 +6,7 @@ class ProcessRules
   def perform
     controll = OpenStruct.new(processed: true, approved: false)
 
-    if UserNotIsChargebackedRule.new(@transaction).perform
+    if TransactionAlreadySavedRule.new(@transaction).perform
       controll.approved = true
     end
 
@@ -16,5 +16,3 @@ class ProcessRules
     @transaction
   end
 end
-
-# UserTooManyRule.new(@transaction).perform
