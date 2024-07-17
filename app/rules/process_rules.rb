@@ -1,17 +1,13 @@
 class ProcessRules
+
   def initialize(transaction)
     @transaction = transaction
   end
 
   def perform
-    controll = OpenStruct.new(processed: true, approved: false)
-
-    if TransactionAlreadySavedRule.new(@transaction).perform
-      controll.approved = true
-    end
-
-    @transaction.processed = controll.processed
-    @transaction.approved = controll.approved
+    @transaction = TransactionRepeatedRule.new(@transaction).perform
+    @transaction = TooManyAttemptsRule.new(@transaction).perform if @transaction.approved
+    @transaction = UserIsChargebackedRule.new(@transaction).perform if @transaction.approved
 
     @transaction
   end
