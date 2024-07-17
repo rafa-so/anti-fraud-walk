@@ -4,7 +4,7 @@ class TransactionHistory < ApplicationRecord
 
   def self.register(transaction)
     self.create(
-      transaction_id: transaction.id,
+      transaction_id: transaction&.id,
       external_transaction_id: transaction.external_id,
       amount: transaction.amount,
       card_number: transaction.card_number,

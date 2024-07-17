@@ -6,7 +6,7 @@ class TransactionController < ApplicationController
             amount: transaction_params[:transaction_amount],
             external_date: Time.parse(transaction_params[:transaction_date]),
             device_id: transaction_params[:device_id],
-            user_id: transaction_params[:user_id],
+            user_id:  transaction_params[:user_id],
             merchant_id: transaction_params[:merchant_id]
         )
 
@@ -20,6 +20,9 @@ class TransactionController < ApplicationController
             .betwenn_range
             .count
         throw Transaction::RuleError.new if user_attempts > 3
+
+        user_chargebacked = Transaction.from_user(@transaction.user_id).chargebacked
+        throw Transaction::RuleError.new if user_chargebacked.present?
 
         @transaction.save!
 
