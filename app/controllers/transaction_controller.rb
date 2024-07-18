@@ -32,7 +32,18 @@ class TransactionController < ApplicationController
     end
 
 
-    def chargeback; end
+    def chargeback
+        @transaction = Transaction.where(external_id: transaction_params[:transaction_id]).first
+        @transaction.have_chargeback
+        @transaction.save!
+
+        TransactionHistory.register (@transaction)
+
+        render json: {
+            transaction_id: @transaction.external_id,
+            chargeback: @transaction.chargeback_label
+        }
+    end
 
     private
 

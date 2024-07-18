@@ -17,4 +17,12 @@ class Transaction < ApplicationRecord
   def deny
     self.approved = false
   end
+
+  def have_chargeback
+    self.chargebacked = true
+  end
+
+  def chargeback_label
+    self.chargebacked ? "done" : "no done"
+  end
 end
