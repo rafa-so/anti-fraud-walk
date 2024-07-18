@@ -17,45 +17,33 @@ After this process above, it done payment to merchant.
 ## 2 - Explain the difference between acquirer, sub-acquirer and payment gateway and how the flow explained in question 1 changes for these players.
 
 ### Acquier
-São as responsáveis por fazer a intermediação entre as bandeiras dos cartões e os bancos. Elas são representadas
-pelas maquininhas que são disponibilizadas nos estabelecimentos. 
+They are responsible for intermediating between card networks and banks. They are represented by the card terminals provided to merchants.
 
 ### subacquier
-Conectam logistas e clientes às adquirentes de forma mais integrada. Eles conectam as adquirentes, gateways, anti-fraude
-e fazem o repasse para o cliente, tudo de forma mais integrada.
+They connect merchants and customers to acquirers in a more integrated manner. They link acquirers, gateways, anti-fraud systems, and handle the transfer to the customer, all in a more integrated way.
 
 ### Gateway
-Ele também faz a intermediação entre as adquirentes e os estabelecimentos comerciais. Ele é usado em "formato de software",
-onde a "maquininha" é pensada de forma virtual. 
+It also intermediates between acquirers and merchants. It is used in a "software format," where the "card terminal" is envisioned virtually.
 
-Ele também pode processar diversos tipos de meios de pagamento, como boleto, cartão de crédito e débito etc.
+It can also process various types of payment methods, such as bank slips, credit and debit cards, etc.
 
 ## 3 - Explain what chargebacks are, how they differ from cancellations and what is their connection with fraud in the acquiring world.
 
 ### What chargeback are?
 It is a mechanism to revert Settled Transaction. 
 
-O chargeback é um mecanismo para reversão de transações que já foram liquidadas. O motivo, gelramente, é: 
- - fraude
- - reenbolso do pagamento por algum motivo entre o comprador e o comerciante
+Chargeback is a machanism to revert transactions that was liquided. Generaly be:
+ - fraud
+ - refound for same question of customer and merchat both.
 
-Normalmente este processo começa com a requisição do comprado no banco emissor do cartão. Com isso, o banco vai 
-investigar junto a bandeira, a adquirente e o comerciante. No final, se for constatado erro, a transação é revertida, e a transferência
-feita para a origem do pedido.
+Normally, this process starts with the cardholder's request to the card-issuing bank. The bank then investigates with the card network, the acquirer, and the merchant. In the end, if an error is found, the transaction is reversed, and the transfer is made to the origin of the request.
 
-O chargeback também pode acarretar em taxas maiores para o comerciante, revisão de contrado com a adquirente, e 
-reputação manchada.
+Chargebacks can also result in higher fees for the merchant, contract review with the acquirer, and a damaged reputation
 
 ## how they differ from cancellations
 
-Inicialmente a diferença está na origem do pedido. `chargeback` tem como origem o próprio cliente/comprador. Já o 
-`cancelamento`, tem como origem o próprio comerciante.
+Chargeback the transaction was approved. It begin with with the request from customer or merchant. Cancellation the transaction no be approved yet, but wont finished for trobleshooting.
 
-O `chargeback`, ele é uma espécie de cancelamento, de uma transação já liquidada. Além disso, envolve uma investigação
-entre as partes do processo (banco emissor do cartão, bandeira, adquirente e comerciante). 
-
-Já o `cancelamento` ele tem relação com uma transação que ainda não foi liquidada. Já é uma operação que vai acontecer
-antes da transação ser de fato liquidada.
 
 ## what is their connection with fraud in the acquiring world
 
@@ -66,12 +54,11 @@ A `anti-fraud` process can be automated, verify the logs transactions, dimiss th
 # Análise
 ## Analyze the data provided and present your conclusions (consider that all transactions are made using a mobile device).
 
-looking quickly to file, generaly de users don't buy in more one merchant by day. They use the same card to merchant differ.
+looking quickly to file, generaly de users don't buy in more one merchant by second. They use the same card to merchant differ.
 
 
 ## In addition to the spreadsheet data, what other data would you look at to try to find patterns of possible frauds?
-Olharia para a coluna de comerciante, usuário e número de cartão. Tentaria ver o seguinte:
- - tentaria ver também se o mesmo cartão está sendo usado em vários comerciantes em um espaço de tempo curto.
+I look for merchant, user and card number columns. I try see if same card is used to some merchants within range little time
 
 
 # Run project
