@@ -36,8 +36,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_153426) do
     t.integer "amount", null: false
     t.string "card_number", null: false
     t.string "device_id"
-    t.integer "user"
-    t.integer "merchant"
+    t.integer "user_id"
+    t.integer "merchant_id"
     t.boolean "chargebacked", default: false
     t.boolean "approved", default: false
     t.datetime "created_at", null: false
