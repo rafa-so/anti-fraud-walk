@@ -36,14 +36,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_153426) do
     t.integer "amount", null: false
     t.string "card_number", null: false
     t.string "device_id"
-    t.bigint "user_id"
-    t.bigint "merchant_id"
+    t.integer "user"
+    t.integer "merchant"
     t.boolean "chargebacked", default: false
     t.boolean "approved", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["merchant_id"], name: "index_transactions_on_merchant_id"
-    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   add_foreign_key "transaction_histories", "transactions"

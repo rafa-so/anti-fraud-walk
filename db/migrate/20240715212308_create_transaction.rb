@@ -6,8 +6,8 @@ class CreateTransaction < ActiveRecord::Migration[7.1]
       t.integer :amount, null: false
       t.string :card_number, null: false
       t.string :device_id
-      t.references :user
-      t.references :merchant
+      t.integer :user_id
+      t.integer :merchant_id
       t.boolean :chargebacked, default: false
       t.boolean :approved, default: false
 
