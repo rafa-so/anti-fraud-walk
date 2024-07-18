@@ -9,6 +9,12 @@ class TransactionController < ApplicationController
             t.merchant_id = transaction_params[:merchant_id]
         end
 
+        if !@transaction.valid?
+            return render json: {
+                error: @transaction.errors.full_messages.join(". ")
+            }, status: :bad_request
+        end
+
         @transaction = ProcessRules.new(@transaction).perform
 
         @response = {

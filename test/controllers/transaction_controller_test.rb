@@ -92,20 +92,47 @@ class TransactionControllerTest < ActionDispatch::IntegrationTest
     assert_response :bad_request
   end
 
-  # test "Controller should return error response" do
-  #   post '/transaction', params: {
-  #     user_id: 97034,
-  #     merchant_id: 49744,
-  #     card_number: "404514******9116",
-  #     transaction_date: "2019-11-24T20:16:32.812632",
-  #     transaction_amount: 37054,
-  #     device_id: 2854
-  #   }, as: :json
+  test "Controller should return bad_request status code to not valid transaction" do
+    post '/transaction', params: {
+      user_id: 97034,
+      merchant_id: 49744,
+      card_number: "404514******9116",
+      transaction_date: "2019-11-24T20:16:32.812632",
+      transaction_amount: 37054,
+      device_id: 2854
+    }, as: :json
 
-  #   body = JSON.parse(@response.body)
+    assert_response :bad_request
+  end
 
-  #   assert body["error"].present?, true
-  # end
+  test "Controller should return error message to not valid transaction" do
+    post '/transaction', params: {
+      user_id: 97034,
+      merchant_id: 49744,
+      card_number: "404514******9116",
+      transaction_date: "2019-11-24T20:16:32.812632",
+      transaction_amount: 37054,
+      device_id: 2854
+    }, as: :json
+
+    body = JSON.parse(@response.body)
+
+    assert body["error"].present?, true
+  end
+
+  test "Should not new transaction with wrong data" do
+    post '/transaction', params: {
+      user_id: 97034,
+      merchant_id: 49744,
+      card_number: "404514******9116",
+      transaction_date: "2019-11-24T20:16:32.812632",
+      transaction_amount: 37054,
+      device_id: 2854
+    }, as: :json
+
+    transaction = Transaction.where(user_id: 97034)
+    assert transaction.empty?, true
+  end
 
   ######## VALIDATE RULES ########
 

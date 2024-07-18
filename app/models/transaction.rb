@@ -4,7 +4,7 @@ class Transaction < ApplicationRecord
   scope :from_user, -> (user_id) { where(user_id: user_id) }
   scope :chargebacked, -> { where(chargebacked: true) }
 
-  validates :external_id, presence: true
+  validates :external_id, presence: { message: "Required field" }
 
   def approval_label
     self.approved ? 'approved' : 'deny'
